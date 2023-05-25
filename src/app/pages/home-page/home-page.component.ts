@@ -13,8 +13,15 @@ export class HomePageComponent implements OnInit {
 
   travels$!: Observable<Travel[]>
 
+  isAddModalOpen = false
+
   ngOnInit(): void {
     this.travelService.query()
     this.travels$ = this.travelService.travels$
   }
+
+  onToggleModal() {
+    this.isAddModalOpen = !this.isAddModalOpen
+  }
+
 }
