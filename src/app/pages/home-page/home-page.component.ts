@@ -4,12 +4,11 @@ import { Travel } from 'src/app/models/travel';
 import { TravelService } from 'src/app/services/travel.service';
 
 @Component({
-  selector: 'app-my-travels',
-  templateUrl: './my-travels.component.html',
-  styleUrls: ['./my-travels.component.scss']
+  selector: 'app-home-page',
+  templateUrl: './home-page.component.html',
+  styleUrls: ['./home-page.component.scss']
 })
-export class MyTravelsComponent implements OnInit {
-
+export class HomePageComponent implements OnInit {
   constructor(private travelService: TravelService) { }
 
   travels$!: Observable<Travel[]>
@@ -18,5 +17,4 @@ export class MyTravelsComponent implements OnInit {
     this.travelService.query()
     this.travels$ = this.travelService.travels$
   }
-
 }
