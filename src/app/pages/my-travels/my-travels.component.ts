@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Travel } from 'src/app/models/travel';
+import { TravelService } from 'src/app/services/travel.service';
 
 @Component({
   selector: 'app-my-travels',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyTravelsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private travelService: TravelService) { }
+
+  travels$!: Observable<Travel[]>
 
   ngOnInit(): void {
+    this.travelService.query()
+    this.travels$ = this.travelService.travels$
   }
 
 }

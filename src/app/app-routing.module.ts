@@ -5,11 +5,6 @@ import { MyTravelsComponent } from './pages/my-travels/my-travels.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'my-travels',
-    pathMatch: 'full',
-  },
-  {
-    path: 'my-travels',
     component: MyTravelsComponent
   }
 ];
