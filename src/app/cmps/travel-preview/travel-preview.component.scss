@@ -1,0 +1,5 @@
+.preview-container{
+    display: grid;
+    grid-template-columns: repeat(5,minmax(150px,1fr));
+    gap: 10px;
+}
