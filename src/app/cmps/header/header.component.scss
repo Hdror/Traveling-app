@@ -1,0 +1,25 @@
+header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    background-color: #4caf50;
+    color: whitesmoke;
+    margin-bottom: 30px;
+    font-size: 1.2em;
+
+    .header-container {
+        padding: 40px;
+    }
+
+    nav {
+        a {
+            &:not(:last-child) {
+                margin-right: 10px;
+            }
+
+            &.active {
+                color: darkred;
+            }
+        }
+    }
+}
