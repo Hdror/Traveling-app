@@ -9,6 +9,9 @@ header {
 
     .header-container {
         padding: 40px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
     }
 
     nav {
