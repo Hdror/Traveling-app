@@ -4,15 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app-root/app.component';
 import { HeaderComponent } from './cmps/header/header.component';
-import { MyTravelsComponent } from './pages/my-travels/my-travels.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { TravelingTableComponent } from './cmps/traveling-table/traveling-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    MyTravelsComponent,
-    HomePageComponent
+    HomePageComponent,
+    TravelingTableComponent
   ],
   imports: [
     BrowserModule,
