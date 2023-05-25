@@ -29,9 +29,14 @@ h6 {
     margin: 0;
 }
 
+// ** HELPERS **
+
 .clean-link {
     text-decoration: none;
     color: inherit;
-  }
+}
 
-
+.clean-list {
+    list-style-type: none;
+    padding: 0;
+}

@@ -1,9 +1,6 @@
 <section class="traveling-table-container">
-    <div class="traveling-header-titles">
-        <ul>
-            <li *ngFor="let title of tableTitles">{{title}}</li>
-        </ul>
+    <div class="titles-container">
+        <div *ngFor="let title of tableTitles">{{title}}</div>
     </div>
-
-
+    <app-travel-preview *ngFor="let travel of travels" [travel]="travel"></app-travel-preview>
 </section>

@@ -13,11 +13,12 @@ export class TravelingTableComponent implements OnInit {
   @Input() travels!: Travel[] | null
 
   tableTitles: string[] = [
+    "flag",
     "country",
     "startDate",
     "endDate",
     "notes",
-    "flag"]
+  ]
 
   ngOnInit(): void {
   }
