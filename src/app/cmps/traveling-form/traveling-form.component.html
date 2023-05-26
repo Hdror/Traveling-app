@@ -1,10 +1,15 @@
-<form>
-    <label for="country">Country</label>
-    <input type="text" id="country">
-    <label for="start_date">Country</label>
-    <input type="text" id="start_date">
-    <label for="end_date">Country</label>
-    <input type="text" id="end_date">
-    <label>Country</label>
-    <input type="text" id="country">
-</form>
+<section class="form-container">
+    <button class="close-modal-btn">X</button>
+    <form class="add-travel-form">
+        <label for="country">Country</label>
+        <input [(ngModel)]="newTravel.country" (ngModelChange)="handleChange($event)" type="text" name="country" id="country">
+        <label for="start_date">Start Date</label>
+        <input type="date" id="start_date">
+        <label for="end_date">End Date</label>
+        <input type="date" id="end_date">
+        <label>Flag</label>
+        <input type="text" id="country">
+        <button class="submit-btn" type="submit">Submit</button>
+    </form>
+    {{newTravel|json}}
+</section>

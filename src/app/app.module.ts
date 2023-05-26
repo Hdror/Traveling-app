@@ -8,6 +8,8 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { TravelingTableComponent } from './cmps/traveling-table/traveling-table.component';
 import { TravelPreviewComponent } from './cmps/travel-preview/travel-preview.component';
 import { TravelingFormComponent } from './cmps/traveling-form/traveling-form.component';
+import { FormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -17,10 +19,13 @@ import { TravelingFormComponent } from './cmps/traveling-form/traveling-form.com
     TravelingTableComponent,
     TravelPreviewComponent,
     TravelingFormComponent
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

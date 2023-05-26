@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Travel } from 'src/app/models/travel';
+import { TravelService } from 'src/app/services/travel.service';
 
 @Component({
   selector: 'app-traveling-form',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TravelingFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private travelService: TravelService) { }
+
+
+  newTravel!: Travel
 
   ngOnInit(): void {
+    this.newTravel = this.travelService.getEmptyTravel()
+  }
+
+  handleChange(ev:string){
+    console.log(ev);
+    this.travelService.getAutoCompleteOptions(ev).subscribe(res=>console.log(res)
+    )
+
   }
 
 }

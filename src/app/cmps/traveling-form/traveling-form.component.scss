@@ -1,0 +1,43 @@
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 40px;
+    border: 1px solid black;
+    border-radius: 12px;
+    .close-modal-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content:center ;
+        cursor: pointer;
+        border: 1px solid rgba(176, 173, 173, 0.721);
+        &:hover{
+            background-color: rgba(241, 71, 71, 0.547);
+        }
+    }
+    .add-travel-form {
+        display: flex;
+        flex-direction: column;
+        label {
+            margin-block-end: 10px;
+        }
+        input {
+            margin-block-end: 20px;
+        }
+        .submit-btn {
+            padding: 8px 14px;
+            border: transparent;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+    }
+}
