@@ -1,3 +1,4 @@
+@import '../../styles/mixins';
 .auto-complete-container {
     position: absolute;
     top: 100px;
@@ -5,8 +6,11 @@
     border-radius: 6px;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 8px 16px rgba(0, 0, 0, 0.15);
     padding-block: 12px;
-    max-width: 400px;
     max-height: 300px;
+    max-width: 200px;
+    @include for-normal-layout{
+        max-width: 350px;
+    }
     overflow-y: auto;
     .option-item {
         display: flex;

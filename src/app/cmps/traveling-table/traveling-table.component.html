@@ -2,5 +2,12 @@
     <div class="titles-container">
         <div *ngFor="let title of tableTitles">{{title}}</div>
     </div>
-    <app-travel-preview (removeTravel)="removeTravel.emit($event)" *ngFor="let travel of travels" [travel]="travel"></app-travel-preview>
+    <div *ngIf="!travels?.length;else travelsList" class="empty-list-container">
+        <h1>Click on Add Travel to add your first Travel</h1>
+    </div>
+    <ng-template #travelsList>
+        <app-travel-preview (removeTravel)="removeTravel.emit($event)" *ngFor="let travel of travels"
+            [travel]="travel"></app-travel-preview>
+
+    </ng-template>
 </section>

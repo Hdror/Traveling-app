@@ -1,9 +1,34 @@
-.traveling-table-container{
+@import '../../styles/mixins';
+
+.traveling-table-container {
     display: flex;
-    flex-direction: column;
-    .titles-container{
+    overflow-x: auto;
+    @include for-normal-layout {
+        flex-direction: column;
+        overflow-x: unset;
+    }
+    .empty-list-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #4caf50;
+        font-size: 16px;
+    }
+    .titles-container {
         display: grid;
-        grid-template-columns: repeat(5,minmax(150px,1fr));
+        grid-template-rows: repeat(5, minmax(80px, 1fr));
+        @include for-normal-layout {
+            grid-template-rows: unset;
+            grid-template-columns: repeat(5, minmax(150px, 1fr));
+            box-shadow: 0 0 1px 0 black;
+            border-color: transparent
+        }
         gap: 10px;
+        border: 1px solid #b0b0b0;
+        min-width: 100px;
+        padding-block: 20px;
+        padding-inline-start: 10px;
+        background-color: #ebebebb4;
     }
 }

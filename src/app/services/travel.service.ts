@@ -3,19 +3,16 @@ import { Travel } from '../models/travel';
 import { BehaviorSubject, Observable, catchError, filter, map, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AutoCompleteResponse } from '../models/auto-complete-response';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class TravelService {
-  constructor(private http: HttpClient) { }
-
-  private _travelsDB: Travel[] = [
-    { country: "usa", startDate: new Date(), endDate: new Date(), notes: '', flag: "https://flagcdn.com/w320/lu.png", _id: 't204' },
-    { country: "italy", startDate: new Date(), endDate: new Date(), notes: '', flag: "https://flagcdn.com/w320/lu.png", _id: 't206' },
-    { country: "uk", startDate: new Date(), endDate: new Date(), notes: '', flag: "https://flagcdn.com/w320/lu.png", _id: 't205' }
-  ]
+  constructor(private http: HttpClient, private storageService: StorageService) { }
+  private _storageKey = "travels_DB"
+  private _travelsDB: Travel[] = this.storageService.loadFromStorage(this._storageKey) || []
 
   private _travels$ = new BehaviorSubject<Travel[]>([])
   travels$ = this._travels$.asObservable()
@@ -46,6 +43,7 @@ export class TravelService {
 
   addNewTravel(travel: Travel) {
     this._travelsDB.unshift(travel)
+    this.storageService.saveToStorage(this._storageKey, this._travelsDB)
     this._travels$.next(this._travelsDB)
   }
 
@@ -53,6 +51,7 @@ export class TravelService {
     const travels = this._travelsDB
     const travelToRemoveIdx = travels.findIndex(travel => travel._id === travelId)
     travels.splice(travelToRemoveIdx, 1)
+    this.storageService.saveToStorage(this._storageKey, travels)
     this._travels$.next(travels)
   }
 

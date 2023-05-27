@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { BehaviorSubject, Observable, Subscription, debounceTime, switchMap } from 'rxjs';
+import { BehaviorSubject, Subscription, debounceTime } from 'rxjs';
 import { AutoCompleteOption } from 'src/app/models/auto-complete-option';
 import { Travel } from 'src/app/models/travel';
 import { TravelService } from 'src/app/services/travel.service';
@@ -25,7 +25,7 @@ export class TravelingFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.newTravel = this.travelService.getEmptyTravel()
-    this.subscription = this.userInput$.pipe(debounceTime(1000)).subscribe(inputValue => this.onAutoCompleteSearch(inputValue))
+    this.subscription = this.userInput$.pipe(debounceTime(400)).subscribe(inputValue => this.onAutoCompleteSearch(inputValue))
 
   }
 

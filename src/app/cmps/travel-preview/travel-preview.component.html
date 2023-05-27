@@ -1,8 +1,8 @@
 <section class="preview-container">
+        <button (click)="onRemoveTravel($event)" title="remove-travel" class="remove-travel-btn">X</button>
         <img src={{travel.flag}} alt="flag">
         <div>{{travel.country}}</div>
         <div>{{travel.startDate|date}}</div>
         <div>{{travel.endDate|date}}</div>
         <div>{{travel.notes}}</div> 
-        <button (click)="onRemoveTravel($event)" title="remove-travel" class="remove-travel-btn">X</button>
 </section>

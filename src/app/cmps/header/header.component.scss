@@ -1,3 +1,4 @@
+@import '../../styles/mixins';
 header {
     height: 80px;
     display: flex;
@@ -8,7 +9,10 @@ header {
     font-size: 1.2em;
 
     .header-container {
-        padding: 40px;
+        padding: 40px 20px;
+        @include for-normal-layout{
+            padding: 40px;
+        }
         display: flex;
         justify-content: space-between;
         width: 100%;

@@ -1,5 +1,9 @@
+@import "../../styles/mixins";
 .home-page{
-    padding-inline: 40px;
+    padding-inline: 20px;
+    @include for-normal-layout {
+        padding-inline: 40px;
+    }
     .add-travel-btn{
         margin-block-end: 40px;
         padding: 8px 14px;

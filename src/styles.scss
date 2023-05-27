@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+ 
+// IMPORT**
+@import "./app/styles/variables";
+@import "./app/styles/mixins";
 
 * {
     box-sizing: border-box;
@@ -6,10 +10,16 @@
 
 html {
     font-family: f-light, sans-serif;
+    height: 100%;
 }
 
 body {
     margin: 0;
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 p {

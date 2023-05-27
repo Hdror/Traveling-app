@@ -1,3 +1,4 @@
+@import '../../styles/mixins';
 .form-container {
     position: absolute;
     top: 50%;
@@ -8,6 +9,10 @@
     border: 1px solid black;
     border-radius: 12px;
     z-index: 999;
+    width: 300px;
+    @include for-normal-layout{
+        width: 425px;
+    }
     .close-modal-btn {
         position: absolute;
         top:10px;
