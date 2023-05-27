@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Travel } from 'src/app/models/travel';
 
 @Component({
@@ -11,6 +11,7 @@ export class TravelingTableComponent implements OnInit {
   constructor() { }
 
   @Input() travels!: Travel[] | null
+  @Output() removeTravel = new EventEmitter<string>()
 
   tableTitles: string[] = [
     "flag",

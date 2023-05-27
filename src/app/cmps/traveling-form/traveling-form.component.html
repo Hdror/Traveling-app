@@ -8,9 +8,9 @@
             *ngIf="autoCompleteOptions?.length && isOptionsModalOpen"
             [options]="autoCompleteOptions"></app-options-drop-down>
         <label for="start_date">Start Date</label>
-        <input type="date" id="start_date">
+        <input [(ngModel)]="newTravel.startDate" name="startDate" type="date" id="start_date">
         <label for="end_date">End Date</label>
-        <input type="date" id="end_date">
+        <input [(ngModel)]="newTravel.endDate" name="endDate"  type="date" id="end_date">
         <label for="notes">Notes</label>
         <textarea [(ngModel)]="newTravel.notes" type="date" id="notes" name="notes"></textarea>
         <button class="submit-btn" type="submit">Submit</button>

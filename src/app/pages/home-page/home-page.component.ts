@@ -24,4 +24,8 @@ export class HomePageComponent implements OnInit {
     this.isAddModalOpen = !this.isAddModalOpen
   }
 
+  onRemoveTravel(travelId: string) {
+  this.travelService.removeTravel(travelId)
+  }
+
 }

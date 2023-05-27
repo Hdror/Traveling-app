@@ -12,9 +12,9 @@ export class TravelService {
   constructor(private http: HttpClient) { }
 
   private _travelsDB: Travel[] = [
-    { country: "usa", startDate: new Date(), endDate: new Date(), notes: '', flag: "https://flagcdn.com/w320/lu.png", _id:'t204'},
-    { country: "italy", startDate: new Date(), endDate: new Date(), notes: '', flag: "https://flagcdn.com/w320/lu.png",_id:'t206' },
-    { country: "uk", startDate: new Date(), endDate: new Date(), notes: '', flag: "https://flagcdn.com/w320/lu.png",_id:'t205' }
+    { country: "usa", startDate: new Date(), endDate: new Date(), notes: '', flag: "https://flagcdn.com/w320/lu.png", _id: 't204' },
+    { country: "italy", startDate: new Date(), endDate: new Date(), notes: '', flag: "https://flagcdn.com/w320/lu.png", _id: 't206' },
+    { country: "uk", startDate: new Date(), endDate: new Date(), notes: '', flag: "https://flagcdn.com/w320/lu.png", _id: 't205' }
   ]
 
   private _travels$ = new BehaviorSubject<Travel[]>([])
@@ -47,6 +47,13 @@ export class TravelService {
   addNewTravel(travel: Travel) {
     this._travelsDB.unshift(travel)
     this._travels$.next(this._travelsDB)
+  }
+
+  removeTravel(travelId: string) {
+    const travels = this._travelsDB
+    const travelToRemoveIdx = travels.findIndex(travel => travel._id === travelId)
+    travels.splice(travelToRemoveIdx, 1)
+    this._travels$.next(travels)
   }
 
   private _makeId(length = 5) {

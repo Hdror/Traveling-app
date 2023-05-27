@@ -1,5 +1,5 @@
 <main class="home-page">
     <button class="add-travel-btn" (click)="onToggleModal()">Add Travel</button>
     <app-traveling-form (onCloseModal)="onToggleModal()" *ngIf="isAddModalOpen"></app-traveling-form>
-    <app-traveling-table [travels]="travels$|async"></app-traveling-table>
+    <app-traveling-table (removeTravel)="onRemoveTravel($event)" [travels]="travels$|async"></app-traveling-table>
 </main>
