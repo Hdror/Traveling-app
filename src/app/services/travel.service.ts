@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Travel } from '../models/travel';
-import { BehaviorSubject, map, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, filter, map, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AutoCompleteResponse } from '../models/auto-complete-response';
 
@@ -30,12 +30,17 @@ export class TravelService {
   }
 
   getAutoCompleteOptions(userInput: string) {
-    return this.http.get<AutoCompleteResponse[]>(this._url + `name/${userInput}`).pipe(
-      map(countries => countries.map(country => {
-        return { country: country.name.common, flag: country.flags.png }
-      }))
-    )
-
+    // REGEX pattern to match the search input at the start of each word in the country name , including handling accents and diacritics like 'Réunion'
+    const regex = new RegExp(`(?<=^|\\s)${userInput}`, 'ui')
+    return this.http.get<AutoCompleteResponse[]>(this._url + `name/${userInput}`)
+      .pipe(
+        tap(() => {}), 
+        catchError(() => of([])),
+        map(countries => countries.map(country => {
+          return { country: country.name.common, flag: country.flags.png }
+        })
+          .filter(country => regex.test(country.country))
+        )
+      )
   }
-
 }
