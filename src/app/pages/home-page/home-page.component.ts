@@ -13,7 +13,7 @@ export class HomePageComponent implements OnInit {
 
   travels$!: Observable<Travel[]>
 
-  isAddModalOpen = true
+  isAddModalOpen = false
 
   ngOnInit(): void {
     this.travelService.query()

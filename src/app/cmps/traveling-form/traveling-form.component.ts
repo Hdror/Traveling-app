@@ -68,4 +68,9 @@ export class TravelingFormComponent implements OnInit, OnDestroy {
     this.isOptionsModalOpen = false
   }
 
+  onAddNewTravel() {
+    this.travelService.addNewTravel(this.newTravel)
+    this.onCloseAddModal()
+  }
+
 }

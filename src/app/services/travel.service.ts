@@ -12,9 +12,9 @@ export class TravelService {
   constructor(private http: HttpClient) { }
 
   private _travelsDB: Travel[] = [
-    { country: "usa", startDate: new Date(), endDate: new Date(), notes: '', flag: "https://flagcdn.com/w320/lu.png", },
-    { country: "italy", startDate: new Date(), endDate: new Date(), notes: '', flag: "https://flagcdn.com/w320/lu.png", },
-    { country: "uk", startDate: new Date(), endDate: new Date(), notes: '', flag: "https://flagcdn.com/w320/lu.png", }
+    { country: "usa", startDate: new Date(), endDate: new Date(), notes: '', flag: "https://flagcdn.com/w320/lu.png", _id:'t204'},
+    { country: "italy", startDate: new Date(), endDate: new Date(), notes: '', flag: "https://flagcdn.com/w320/lu.png",_id:'t206' },
+    { country: "uk", startDate: new Date(), endDate: new Date(), notes: '', flag: "https://flagcdn.com/w320/lu.png",_id:'t205' }
   ]
 
   private _travels$ = new BehaviorSubject<Travel[]>([])
@@ -26,7 +26,7 @@ export class TravelService {
   }
 
   getEmptyTravel() {
-    return { country: '', startDate: new Date(), endDate: new Date(), notes: '', flag: '' }
+    return { country: '', startDate: new Date(), endDate: new Date(), notes: '', flag: '', _id: this._makeId() }
   }
 
   getAutoCompleteOptions(userInput: string) {
@@ -45,8 +45,18 @@ export class TravelService {
   }
 
   addNewTravel(travel: Travel) {
-    this._travelsDB.push(travel)
+    this._travelsDB.unshift(travel)
     this._travels$.next(this._travelsDB)
   }
 
+  private _makeId(length = 5) {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for (var i = 0; i < length; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+  }
+
 }
+

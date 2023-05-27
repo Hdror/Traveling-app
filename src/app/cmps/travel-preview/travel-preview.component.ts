@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Travel } from 'src/app/models/travel';
 
 @Component({
@@ -10,9 +10,15 @@ export class TravelPreviewComponent implements OnInit {
 
   constructor() { }
 
-  @Input() travel!:Travel
+  @Input() travel!: Travel
+  @Output() removeTravel = new EventEmitter<string>()
 
   ngOnInit(): void {
+  }
+
+  onRemoveTravel(ev: MouseEvent) {
+    ev.stopPropagation()
+    this.removeTravel.emit(this.travel._id)
   }
 
 }

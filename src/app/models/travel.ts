@@ -3,5 +3,6 @@ export interface Travel {
     startDate: Date,
     endDate: Date,
     notes: string,
-    flag?: string
+    flag?: string,
+    _id: string
 }

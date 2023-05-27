@@ -1,6 +1,6 @@
 <section class="form-container">
     <button (click)="onCloseAddModal()" class="close-modal-btn">X</button>
-    <form class="add-travel-form">
+    <form (ngSubmit)="onAddNewTravel()" class="add-travel-form">
         <label for="country">Country</label>
         <input autocomplete="off" [(ngModel)]="newTravel.country" (ngModelChange)="handleChange($event)" type="text"
             name="country" id="country">
