@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AutoCompleteOption } from 'src/app/models/auto-complete-option';
 import { Travel } from 'src/app/models/travel';
 
 @Component({
@@ -10,10 +11,14 @@ export class OptionsDropDownComponent implements OnInit {
 
   constructor() { }
 
-  @Input() options!: Partial<Omit<Travel, "startDate" | "endDate">>[]
-
+  @Input() options!: AutoCompleteOption[]
+  @Output() onSelectCountry = new EventEmitter<AutoCompleteOption>()
 
   ngOnInit(): void {
+  }
+
+  selectCountry(option: AutoCompleteOption) {
+    this.onSelectCountry.emit(option)
   }
 
 }

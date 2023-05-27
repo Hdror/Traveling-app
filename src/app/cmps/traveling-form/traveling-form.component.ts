@@ -1,6 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription, debounceTime, switchMap } from 'rxjs';
-import { AutoCompleteResponse } from 'src/app/models/auto-complete-response';
+import { AutoCompleteOption } from 'src/app/models/auto-complete-option';
 import { Travel } from 'src/app/models/travel';
 import { TravelService } from 'src/app/services/travel.service';
 
@@ -17,7 +17,11 @@ export class TravelingFormComponent implements OnInit, OnDestroy {
   newTravel!: Travel
   userInput$ = new BehaviorSubject<string>('')
   subscription!: Subscription
-  autoCompleteOptions!: Partial<Omit<Travel, "startDate" | "endDate">>[]
+  autoCompleteOptions!: AutoCompleteOption[]
+  isOptionsModalOpen = false
+
+
+  @Output() onCloseModal = new EventEmitter()
 
   ngOnInit(): void {
     this.newTravel = this.travelService.getEmptyTravel()
@@ -36,7 +40,10 @@ export class TravelingFormComponent implements OnInit, OnDestroy {
       return
     }
     this.travelService.getAutoCompleteOptions(input).subscribe({
-      next: e => this.autoCompleteOptions = e,
+      next: e => {
+        this.isOptionsModalOpen = true
+        this.autoCompleteOptions = e
+      },
       error: e => console.log(e)
 
     })
@@ -44,6 +51,21 @@ export class TravelingFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe()
+  }
+
+
+  onCloseAddModal() {
+    this.onCloseModal.emit()
+  }
+
+
+  updateForm(option: AutoCompleteOption) {
+    console.log(option);
+    if (option.country)
+      this.newTravel.country = option.country
+    if (option.flag)
+      this.newTravel.flag = option.flag
+    this.isOptionsModalOpen = false
   }
 
 }

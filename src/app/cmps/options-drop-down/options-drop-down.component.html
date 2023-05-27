@@ -1,6 +1,6 @@
 <section class="auto-complete-container">
     <ul class="clean-list">
-        <li class="option-item" *ngFor="let option of options">
+        <li class="option-item" *ngFor="let option of options" (click)="selectCountry(option)">
             <img src={{option.flag}} alt="flag"> <span class="country-name"> {{option.country}}</span>
         </li>
     </ul>
