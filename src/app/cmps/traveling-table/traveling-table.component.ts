@@ -14,11 +14,11 @@ export class TravelingTableComponent implements OnInit {
   @Output() removeTravel = new EventEmitter<string>()
 
   tableTitles: string[] = [
-    "flag",
-    "country",
-    "startDate",
-    "endDate",
-    "notes",
+    "Flag",
+    "Country",
+    "Start-Date",
+    "End-Date",
+    "Notes",
   ]
 
   ngOnInit(): void {
