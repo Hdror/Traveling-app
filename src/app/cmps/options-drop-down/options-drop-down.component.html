@@ -1,1 +1,7 @@
-<p>options-drop-down works!</p>
+<section class="auto-complete-container">
+    <ul class="clean-list">
+        <li class="option-item" *ngFor="let option of options">
+            <img src={{option.flag}} alt="flag"> <span class="country-name"> {{option.country}}</span>
+        </li>
+    </ul>
+</section>

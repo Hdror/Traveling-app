@@ -34,13 +34,14 @@ export class TravelService {
     const regex = new RegExp(`(?<=^|\\s)${userInput}`, 'ui')
     return this.http.get<AutoCompleteResponse[]>(this._url + `name/${userInput}`)
       .pipe(
-        tap(() => {}), 
+        tap(() => { }),
         catchError(() => of([])),
         map(countries => countries.map(country => {
-          return { country: country.name.common, flag: country.flags.png }
+          return { country: country.name.common, flag: country.flags.svg }
         })
           .filter(country => regex.test(country.country))
         )
       )
   }
+
 }

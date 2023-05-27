@@ -2,7 +2,8 @@
     <button class="close-modal-btn">X</button>
     <form class="add-travel-form">
         <label for="country">Country</label>
-        <input [(ngModel)]="newTravel.country" (ngModelChange)="handleChange($event)" type="text" name="country" id="country">
+        <input autocomplete="off" [(ngModel)]="newTravel.country" (ngModelChange)="handleChange($event)" type="text" name="country" id="country">
+        <app-options-drop-down *ngIf="autoCompleteOptions?.length" [options]="autoCompleteOptions"></app-options-drop-down>
         <label for="start_date">Start Date</label>
         <input type="date" id="start_date">
         <label for="end_date">End Date</label>

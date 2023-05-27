@@ -31,7 +31,10 @@ export class TravelingFormComponent implements OnInit, OnDestroy {
   }
 
   onAutoCompleteSearch(input: string) {
-    if (!input) return
+    if (!input) {
+      this.autoCompleteOptions = []
+      return
+    }
     this.travelService.getAutoCompleteOptions(input).subscribe({
       next: e => this.autoCompleteOptions = e,
       error: e => console.log(e)
