@@ -9,7 +9,8 @@ import { TravelingTableComponent } from './cmps/traveling-table/traveling-table.
 import { TravelPreviewComponent } from './cmps/travel-preview/travel-preview.component';
 import { TravelingFormComponent } from './cmps/traveling-form/traveling-form.component';
 import { FormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { OptionsDropDownComponent } from './cmps/options-drop-down/options-drop-down.component'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {HttpClientModule} from '@angular/common/http'
     HomePageComponent,
     TravelingTableComponent,
     TravelPreviewComponent,
-    TravelingFormComponent
+    TravelingFormComponent,
+    OptionsDropDownComponent
     
   ],
   imports: [

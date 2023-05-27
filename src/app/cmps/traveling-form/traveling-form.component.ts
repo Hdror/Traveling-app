@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BehaviorSubject, Subscription, debounceTime, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, debounceTime, switchMap } from 'rxjs';
+import { AutoCompleteResponse } from 'src/app/models/auto-complete-response';
 import { Travel } from 'src/app/models/travel';
 import { TravelService } from 'src/app/services/travel.service';
 
@@ -16,6 +17,7 @@ export class TravelingFormComponent implements OnInit, OnDestroy {
   newTravel!: Travel
   userInput$ = new BehaviorSubject<string>('')
   subscription!: Subscription
+  autoCompleteOptions!: Partial<Omit<Travel, "startDate" | "endDate">>[]
 
   ngOnInit(): void {
     this.newTravel = this.travelService.getEmptyTravel()
@@ -31,9 +33,9 @@ export class TravelingFormComponent implements OnInit, OnDestroy {
   onAutoCompleteSearch(input: string) {
     if (!input) return
     this.travelService.getAutoCompleteOptions(input).subscribe({
-      next: e => console.log(e),
-      error: e=>console.log(e)
-      
+      next: e => this.autoCompleteOptions = e,
+      error: e => console.log(e)
+
     })
   }
 
