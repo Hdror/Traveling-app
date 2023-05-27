@@ -44,4 +44,9 @@ export class TravelService {
       )
   }
 
+  addNewTravel(travel: Travel) {
+    this._travelsDB.push(travel)
+    this._travels$.next(this._travelsDB)
+  }
+
 }

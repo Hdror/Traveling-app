@@ -2,12 +2,18 @@
     <button (click)="onCloseAddModal()" class="close-modal-btn">X</button>
     <form class="add-travel-form">
         <label for="country">Country</label>
-        <input autocomplete="off" [(ngModel)]="newTravel.country" (ngModelChange)="handleChange($event)" type="text" name="country" id="country">
-        <app-options-drop-down (onSelectCountry)="updateForm($event)" *ngIf="autoCompleteOptions?.length && isOptionsModalOpen" [options]="autoCompleteOptions"></app-options-drop-down>
+        <input autocomplete="off" [(ngModel)]="newTravel.country" (ngModelChange)="handleChange($event)" type="text"
+            name="country" id="country">
+        <app-options-drop-down (onSelectCountry)="updateForm($event)"
+            *ngIf="autoCompleteOptions?.length && isOptionsModalOpen"
+            [options]="autoCompleteOptions"></app-options-drop-down>
         <label for="start_date">Start Date</label>
         <input type="date" id="start_date">
         <label for="end_date">End Date</label>
         <input type="date" id="end_date">
+        <label for="notes">Notes</label>
+        <textarea [(ngModel)]="newTravel.notes" type="date" id="notes" name="notes"></textarea>
         <button class="submit-btn" type="submit">Submit</button>
     </form>
+    {{newTravel|json}}
 </section>
