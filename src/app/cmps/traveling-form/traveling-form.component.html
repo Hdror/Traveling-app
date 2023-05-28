@@ -1,18 +1,30 @@
 <section class="form-container">
     <button (click)="onCloseAddModal()" class="close-modal-btn">X</button>
-    <form (ngSubmit)="onAddNewTravel()" class="add-travel-form">
+    <form #form="ngForm" (ngSubmit)="onAddNewTravel(form)" class="add-travel-form">
         <label for="country">Country</label>
-        <input  autocomplete="off" [(ngModel)]="newTravel.country" (ngModelChange)="handleChange($event)" type="text"
-            name="country" id="country">
+       
+        <input required ngModel autocomplete="off" #country="ngModel" [(ngModel)]="selectedCountry" (ngModelChange)="handleChange($event)"
+            type="text" name="country" id="country">
+            <p class="errors" *ngIf="country.invalid && country.touched">
+                <span *ngIf="country.errors?.['required']">Please choose country</span>
+            </p>
         <app-options-drop-down (onSelectCountry)="updateForm($event)"
             *ngIf="autoCompleteOptions?.length && isOptionsModalOpen"
             [options]="autoCompleteOptions"></app-options-drop-down>
         <label for="start_date">Start Date</label>
-        <input [(ngModel)]="newTravel.startDate" name="startDate" type="date" id="start_date">
+
+        <input required ngModel name="startDate" type="date" id="start_date" #startDate="ngModel">
+        <p class="errors" *ngIf="startDate.invalid && startDate.touched">
+            <span *ngIf="startDate.errors?.['required']">Please choose start date</span>
+        </p>
         <label for="end_date">End Date</label>
-        <input [(ngModel)]="newTravel.endDate" name="endDate"  type="date" id="end_date">
+
+        <input class="end-date-input" required ngModel name="endDate" type="date" id="end_date" #endDate="ngModel">
+        <p class="errors" *ngIf="endDate.invalid && endDate.touched">
+            <span *ngIf="endDate.errors?.['required']">Please choose end date</span>
+        </p>
         <label for="notes">Notes</label>
-        <textarea [(ngModel)]="newTravel.notes" type="date" id="notes" name="notes"></textarea>
-        <button class="submit-btn" type="submit">Submit</button>
+        <textarea ngModel type="date" id="notes" name="notes"></textarea>
+        <button [disabled]="form.invalid" class="submit-btn" type="submit">Submit</button>
     </form>
 </section>

@@ -29,7 +29,6 @@ import { OptionsDropDownComponent } from './cmps/options-drop-down/options-drop-
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]

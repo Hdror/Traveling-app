@@ -1,4 +1,4 @@
-@import '../../styles/mixins';
+@import "../../styles/mixins";
 .form-container {
     position: absolute;
     top: 50%;
@@ -10,12 +10,12 @@
     border-radius: 12px;
     z-index: 999;
     width: 300px;
-    @include for-normal-layout{
+    @include for-normal-layout {
         width: 425px;
     }
     .close-modal-btn {
         position: absolute;
-        top:10px;
+        top: 10px;
         right: 10px;
         width: 25px;
         height: 25px;
@@ -23,10 +23,10 @@
         padding: 5px;
         display: flex;
         align-items: center;
-        justify-content:center ;
+        justify-content: center;
         cursor: pointer;
         border: 1px solid rgba(176, 173, 173, 0.721);
-        &:hover{
+        &:hover {
             background-color: rgba(241, 71, 71, 0.547);
         }
     }
@@ -35,15 +35,38 @@
         flex-direction: column;
         label {
             margin-block-end: 10px;
+            margin-block-start: 20px;
         }
-        input,textarea {
-            margin-block-end: 20px;
+        input,
+        textarea {
+            border-radius: 8px;
+            padding: 5px 10px;
+            &.ng-invalid.ng-touched {
+                border-left: 2px solid rgba(255, 0, 0, 0.653);
+            }
+            &.ng-valid {
+                border-left: 2px solid rgba(0, 255, 34, 0.762);
+            }
+        }
+        .errors {
+            span {
+                font-size: 12px;
+                margin-block-start: 5px;
+                color: red;
+            }
         }
         .submit-btn {
             padding: 8px 14px;
             border: transparent;
             border-radius: 12px;
+            margin-block-start: 20px;
+            background-color: #4caf50;
+            color: white;
             cursor: pointer;
+            &:disabled {
+                cursor: not-allowed;
+                background-color:rgba(227, 64, 64, 0.653) ;
+            }
         }
     }
 }

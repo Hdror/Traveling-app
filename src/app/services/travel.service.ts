@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Travel } from '../models/travel';
-import { BehaviorSubject, Observable, catchError, filter, map, of, tap } from 'rxjs';
+import { BehaviorSubject, catchError, map, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AutoCompleteResponse } from '../models/auto-complete-response';
 import { StorageService } from './storage.service';

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { BehaviorSubject, Subscription, debounceTime } from 'rxjs';
 import { AutoCompleteOption } from 'src/app/models/auto-complete-option';
 import { Travel } from 'src/app/models/travel';
@@ -15,6 +16,8 @@ export class TravelingFormComponent implements OnInit, OnDestroy {
 
 
   newTravel!: Travel
+  selectedCountry!: string
+  flagUrl!: string
   userInput$ = new BehaviorSubject<string>('')
   subscription!: Subscription
   autoCompleteOptions!: AutoCompleteOption[]
@@ -59,16 +62,16 @@ export class TravelingFormComponent implements OnInit, OnDestroy {
 
 
   updateForm(option: AutoCompleteOption) {
-    console.log(option);
     if (option.country)
-      this.newTravel.country = option.country
+      this.selectedCountry = option.country
     if (option.flag)
-      this.newTravel.flag = option.flag
+      this.flagUrl = option.flag
     this.isOptionsModalOpen = false
   }
 
-  onAddNewTravel() {
-    this.travelService.addNewTravel(this.newTravel)
+  onAddNewTravel(form: NgForm) {
+    const newTravel = { ...form.value, flag: this.flagUrl }
+    this.travelService.addNewTravel(newTravel)
     this.onCloseAddModal()
   }
 

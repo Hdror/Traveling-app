@@ -6,8 +6,9 @@
         <h1>Click on Add Travel to add your first Travel</h1>
     </div>
     <ng-template #travelsList>
-        <app-travel-preview (removeTravel)="removeTravel.emit($event)" *ngFor="let travel of travels"
+        <div class="table-rows-container">
+            <app-travel-preview (removeTravel)="removeTravel.emit($event)" *ngFor="let travel of travels"
             [travel]="travel"></app-travel-preview>
-
+        </div>
     </ng-template>
 </section>
