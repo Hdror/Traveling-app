@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, AbstractControl, ValidatorFn } from '@angular/forms';
 import { BehaviorSubject, Subscription, debounceTime } from 'rxjs';
 import { AutoCompleteOption } from 'src/app/models/auto-complete-option';
 import { Travel } from 'src/app/models/travel';
@@ -14,7 +14,6 @@ export class TravelingFormComponent implements OnInit, OnDestroy {
 
   constructor(private travelService: TravelService) { }
 
-
   newTravel!: Travel
   selectedCountry!: string
   flagUrl!: string
@@ -22,6 +21,8 @@ export class TravelingFormComponent implements OnInit, OnDestroy {
   subscription!: Subscription
   autoCompleteOptions!: AutoCompleteOption[]
   isOptionsModalOpen = false
+  startDateValue!: string;
+  endDateValue!: string;
 
 
   @Output() onCloseModal = new EventEmitter()
@@ -33,7 +34,6 @@ export class TravelingFormComponent implements OnInit, OnDestroy {
 
   handleChange(userInput: string) {
     this.userInput$.next(userInput)
-    console.log(userInput);
   }
 
   onAutoCompleteSearch(input: string) {
@@ -55,6 +55,25 @@ export class TravelingFormComponent implements OnInit, OnDestroy {
     this.subscription?.unsubscribe()
   }
 
+  validateDate(form: NgForm, dateToValidate: string) {
+    const selectedStartDate = new Date(this.startDateValue);
+    const selectedEndDate = new Date(this.endDateValue);
+    const maxDate = new Date(); // Set your maximum date here
+
+    if (dateToValidate === 'startDate') {
+      if (selectedStartDate > maxDate) {
+        return form.controls[`${dateToValidate}`].setErrors({ 'maxDate': true });
+      }
+    } else {
+      if (selectedEndDate > maxDate) {
+        return form.controls[`${dateToValidate}`].setErrors({ 'maxDate': true });
+      }
+    }
+    if (selectedStartDate > selectedEndDate) {
+      return form.controls[`${dateToValidate}`].setErrors({ 'validDate': true });
+    }
+    form.controls[`${dateToValidate}`].setErrors(null);
+  }
 
   onCloseAddModal() {
     this.onCloseModal.emit()

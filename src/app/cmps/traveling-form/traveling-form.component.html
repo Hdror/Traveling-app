@@ -2,26 +2,32 @@
     <button (click)="onCloseAddModal()" class="close-modal-btn">X</button>
     <form #form="ngForm" (ngSubmit)="onAddNewTravel(form)" class="add-travel-form">
         <label for="country">Country</label>
-       
-        <input required ngModel autocomplete="off" #country="ngModel" [(ngModel)]="selectedCountry" (ngModelChange)="handleChange($event)"
-            type="text" name="country" id="country">
-            <p class="errors" *ngIf="country.invalid && country.touched">
-                <span *ngIf="country.errors?.['required']">Please choose country</span>
-            </p>
+
+        <input required ngModel autocomplete="off" #country="ngModel" [(ngModel)]="selectedCountry"
+            (ngModelChange)="handleChange($event)" type="text" name="country" id="country">
+        <p class="errors" *ngIf="country.invalid && country.touched">
+            <span *ngIf="country.errors?.['required']">Please choose country</span>
+        </p>
         <app-options-drop-down (onSelectCountry)="updateForm($event)"
-            *ngIf="autoCompleteOptions?.length && isOptionsModalOpen"
-            [options]="autoCompleteOptions"></app-options-drop-down>
+            *ngIf="autoCompleteOptions?.length && isOptionsModalOpen" [options]="autoCompleteOptions">
+        </app-options-drop-down>
         <label for="start_date">Start Date</label>
 
-        <input required ngModel name="startDate" type="date" id="start_date" #startDate="ngModel">
+        <input [(ngModel)]="startDateValue" required (ngModelChange)="validateDate(form,'startDate')" ngModel
+            name="startDate" type="date" #startDate="ngModel">
         <p class="errors" *ngIf="startDate.invalid && startDate.touched">
             <span *ngIf="startDate.errors?.['required']">Please choose start date</span>
+            <span *ngIf="startDate.errors?.['maxDate']">Please choose past date </span>
+            <span *ngIf="startDate.errors?.['validDate']">Must be earlier than the end date</span>
         </p>
         <label for="end_date">End Date</label>
 
-        <input class="end-date-input" required ngModel name="endDate" type="date" id="end_date" #endDate="ngModel">
+        <input [(ngModel)]="endDateValue" class="end-date-input" required (ngModelChange)="validateDate(form,'endDate')"
+            ngModel name="endDate" type="date" #endDate="ngModel">
         <p class="errors" *ngIf="endDate.invalid && endDate.touched">
             <span *ngIf="endDate.errors?.['required']">Please choose end date</span>
+            <span *ngIf="endDate.errors?.['maxDate']">Please choose past date </span>
+            <span *ngIf="endDate.errors?.['validDate']">Must be later than the start date</span>
         </p>
         <label for="notes">Notes</label>
         <textarea ngModel type="date" id="notes" name="notes"></textarea>
