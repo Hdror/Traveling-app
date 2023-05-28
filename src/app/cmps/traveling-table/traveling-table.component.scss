@@ -1,9 +1,10 @@
-@import '../../styles/mixins';
+@import "../../styles/mixins";
 
 .traveling-table-container {
     display: flex;
     overflow-x: auto;
     position: relative;
+    min-height: 100px;
     @include for-normal-layout {
         flex-direction: column;
         overflow-x: unset;
@@ -24,22 +25,40 @@
             grid-template-rows: unset;
             grid-template-columns: repeat(5, minmax(150px, 1fr));
             box-shadow: 0 0 1px 0 black;
-            border-color: transparent
+            border-color: transparent;
         }
         gap: 10px;
         border: 1px solid #b0b0b0;
-        min-width: 100px;
+        min-width: 120px;
         padding-block: 20px;
         padding-inline-start: 10px;
         background-color: #ebebebb4;
+        .title {
+            position: relative;
+            .sort-arrow-up,
+            .sort-arrow-down {
+                position: absolute;
+                height: 20px;
+                width: 20px;
+                right: 10px;
+                @include for-normal-layout {
+                    right: 50px;
+                }
+            }
+            .sort-arrow-up {
+                top: 5px;
+            }
+            .sort-arrow-down {
+                top: -4px;
+            }
+        }
     }
-    .table-rows-container{
+    .table-rows-container {
         display: flex;
         overflow-x: auto;
         @include for-normal-layout {
-          flex-direction: column;
-          overflow-x: unset;
-
+            flex-direction: column;
+            overflow-x: unset;
         }
     }
 }

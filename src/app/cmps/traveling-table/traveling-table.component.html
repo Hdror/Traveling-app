@@ -1,14 +1,21 @@
 <section class="traveling-table-container">
-    <div class="titles-container">
-        <div *ngFor="let title of tableTitles">{{title}}</div>
+    <div *ngIf="travels?.length" class="titles-container">
+        <div [ngStyle]="{'cursor' :title==='Notes' || title === 'Flag'? 'default' :'pointer'}" class="title "
+            (click)="title==='Notes' || title === 'Flag'? null: onSortBy(title)" *ngFor="let title of tableTitles">
+            {{title}}
+            <img *ngIf="sortBy.field===title && !sortBy.ascending" class="sort-arrow-up"
+                src="../../../assets/svg/arrow-up.svg" alt="arrow-up">
+            <img *ngIf="sortBy.field===title && sortBy.ascending" class="sort-arrow-down"
+                src="../../../assets/svg/arrow-down.svg" alt="arrow-down">
+        </div>
     </div>
-    <div *ngIf="!travels?.length;else travelsList" class="empty-list-container">
+    <div *ngIf="!travels?.length;else travelsList tableTitles" class="empty-list-container">
         <h1>Click on Add Travel to add your first Travel</h1>
     </div>
     <ng-template #travelsList>
         <div class="table-rows-container">
             <app-travel-preview (removeTravel)="removeTravel.emit($event)" *ngFor="let travel of travels"
-            [travel]="travel"></app-travel-preview>
+                [travel]="travel"></app-travel-preview>
         </div>
     </ng-template>
 </section>
