@@ -8,7 +8,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { TravelingTableComponent } from './cmps/traveling-table/traveling-table.component';
 import { TravelPreviewComponent } from './cmps/travel-preview/travel-preview.component';
 import { TravelingFormComponent } from './cmps/traveling-form/traveling-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { OptionsDropDownComponent } from './cmps/options-drop-down/options-drop-down.component'
 
@@ -27,7 +27,9 @@ import { OptionsDropDownComponent } from './cmps/options-drop-down/options-drop-
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule    
+    HttpClientModule,
+    ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

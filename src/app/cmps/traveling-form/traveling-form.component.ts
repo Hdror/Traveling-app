@@ -25,8 +25,7 @@ export class TravelingFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.newTravel = this.travelService.getEmptyTravel()
-    this.subscription = this.userInput$.pipe(debounceTime(400)).subscribe(inputValue => this.onAutoCompleteSearch(inputValue))
-
+    this.subscription = this.userInput$.pipe(debounceTime(300)).subscribe(inputValue => this.onAutoCompleteSearch(inputValue))
   }
 
   handleChange(userInput: string) {
