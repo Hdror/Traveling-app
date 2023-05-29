@@ -4,9 +4,10 @@
             (click)="title==='Notes' || title === 'Flag'? null: onSortBy(title)" *ngFor="let title of tableTitles">
             {{title}}
             <img *ngIf="sortBy.field===title && !sortBy.ascending" class="sort-arrow-up"
-                src="../../../assets/svg/arrow-up.svg" alt="arrow-up">
+                src="./assets/svg/arrow-up.svg" alt="arrow-up">
             <img *ngIf="sortBy.field===title && sortBy.ascending" class="sort-arrow-down"
-                src="../../../assets/svg/arrow-down.svg" alt="arrow-down">
+                src="./assets/svg/arrow-down.svg
+                " alt="arrow-down">
         </div>
     </div>
     <div *ngIf="!travels?.length;else travelsList tableTitles" class="empty-list-container">

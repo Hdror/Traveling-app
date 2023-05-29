@@ -7,10 +7,12 @@
     border: 1px solid #b0b0b0;
     text-align: center;
     min-width: 125px;
+    max-width: 400px;
     height: 550px;
     padding-block-start: 15px;
-    @include for-normal-layout {
+    @include for-tablet-layout {
         height: 100%;
+        max-width: unset;
         max-height: 150px;
         grid-template-rows: unset;
         justify-items: baseline;
@@ -47,7 +49,7 @@
         right: 50%;
         z-index: 99;
         transform: translateX(50%);
-        @include for-normal-layout {
+        @include for-tablet-layout {
             top: 50%;
             bottom: unset;
             right: 10px;

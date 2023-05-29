@@ -10,7 +10,7 @@ header {
 
     .header-container {
         padding: 40px 20px;
-        @include for-normal-layout{
+        @include for-tablet-layout{
             padding: 40px;
         }
         display: flex;
